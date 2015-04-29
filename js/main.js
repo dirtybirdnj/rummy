@@ -1,28 +1,34 @@
 var root = location.protocol + '//' + location.host + '/rummy/challenge-mat-gilbert/';
 
 $(function() {
-   
-   	alert(root);
-   
-    console.log( "ready!" );
-    
+       
     $('#startGame').click(function(){ startGame(); });
     
     
 });
 
 function startGame(){
+		
 	var url = root + 'post.php';
-	$.post(url,{'action' : 'newgame'},function(data){
+	
+	console.log(url);
+	
+	$.post(url,{ action: "newgame"},"json").done(function(data){
 		
 		displayNewGame(data);
 		
-	},'json');
+	}).fail(function(data){
+		
+		console.log('error');
+		console.log(data);
+		
+	});
 	
 }
 
 function displayNewGame(data){
 	
+	console.log('displaying new game');
 	console.log(data);
 	
 }

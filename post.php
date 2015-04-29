@@ -6,20 +6,30 @@ if($_POST){
 
 	if($_POST['action'] == 'newgame'){
 		
+		$game = new rummy();		
+		$deck = $game->dealCards();
+		outputJSON($deck);
 		
 		
 	}
 
-}
+} else {
 	
-echo "<pre>";	
-$game = new rummy();
+	echo "<pre>";	
+	$game = new rummy();
+	
+	$deck = $game->dealCards();
+	
+	var_dump($deck);	
+	echo "</pre>";	
+	
+}
 
-$deck = $game->dealCards();
+function outputJSON($data){
 
-var_dump($deck);	
-echo "</pre>";	
-
-
-
+	header('Content-Type: application/json');
+	echo json_encode($data);	
+	
+	
+}
 ?>

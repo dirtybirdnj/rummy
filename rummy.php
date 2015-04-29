@@ -13,20 +13,18 @@ class rummy extends deck{
 		$stack = array();
 		$discard = array();
 		
-		$i = 0;
+		$i = 1;
 		foreach($deck as $card){
-		
-			while(count($p1_cards) < 6 && count($p2_cards) < 6){
-				//if(count($p1_cards) <= 7){ $p1_cards[] = $card; }
+				
+			if(count($p1_cards) >= 7 && count($p2_cards >= 7)){
+
+				if(count($stack) < 37){ $stack[] = $card; }
+				else { $discard[] = $card; }
+				
+			} else {
+				
 				if($i % 2 == 0){ $p1_cards[] = $card; }
-				else{ $p2_cards[] = $card; }
-				
-			}
-		
-			if(count($p1_cards) == 7 && count($p2_cards == 7)){
-				
-				if(count($discard) + count($p1_cards) + count($p2_cards) == 51){ $discard[] = $card; } 
-				else { $stack[] = $card; }
+				else{ $p2_cards[] = $card; }				
 				
 			}
 				
@@ -36,7 +34,9 @@ class rummy extends deck{
 		}
 		
 		$shuffled_cards['p1'] = $p1_cards;
-		$shuffled_cards['p2'] = $p2_cards;		
+		$shuffled_cards['p2'] = $p2_cards;
+		$shuffled_cards['discard'] = $discard;
+		$shuffled_cards['stack'] = $stack;		
 		
 		return $shuffled_cards;
 		

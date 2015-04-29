@@ -17,8 +17,6 @@ class deck {
 				$card = "$face$suit";
 				$deck[] = $card;
 				
-				//echo "<p>Card: $card</p>";
-				
 			}			
 			
 		}
