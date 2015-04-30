@@ -34,7 +34,7 @@ class rummy extends deck{
 		}
 		
 		$shuffled_cards['p1'] = $this->sortHand($p1_cards);
-		$shuffled_cards['p2'] = $p2_cards;
+		$shuffled_cards['p2'] = $this->sortHand($p2_cards);
 		$shuffled_cards['discard'] = $discard;
 		$shuffled_cards['stack'] = $stack;		
 		
@@ -43,7 +43,7 @@ class rummy extends deck{
 	}
 	
 	public function sortHand($cards){
-		
+				
 		$hearts = array();
 		$clubs = array();
 		$diamonds = array();
@@ -54,14 +54,8 @@ class rummy extends deck{
 		//sort cards by face
 		foreach($cards as $card){
 
-			//$suit = substr($card,1,1);
-			preg_match('/(((?:[1]?)(?:[0-9,J,Q,K,A]))([H,C,D,S]{1}))/',$card,$cardValues);
-			
-			
-			//var_dump($card);
-			//var_dump($suit);
-			//var_dump($cardValues);
-		
+			$cardValues = $this->getCardValues($card);
+
 			if($cardValues[3] == 'H') $hearts[] = $card;
 			if($cardValues[3] == 'C') $clubs[] = $card;
 			if($cardValues[3] == 'D') $diamonds[] = $card;			
@@ -69,27 +63,57 @@ class rummy extends deck{
 
 		}
 		
-		//$hand[] = $hearts;
-		//$hand[] = $clubs;
-		//$hand[] = $diamonds;
-		//$hand[] = $spades;
-		
+		//Make sure aces are first in each card order
+
+		$hearts = $this->orderFaceCards($hearts);		
+		$clubs = $this->orderFaceCards($clubs);
+		$diamonds = $this->orderFaceCards($diamonds);		
+		$spades = $this->orderFaceCards($spades);		
 		$hand = array_merge($hearts,$clubs,$diamonds,$spades);
 		
-		$orderedHand = $this->orderFaceCards($hand);
+
 		
-		return $orderedHand;						
+		return $hand;						
 		
-		
-		
+			
 	}
 	
+	
+	private function getCardValues($card){
+
+		preg_match('/(((?:[1]?)(?:[0-9,J,Q,K,A]))([H,C,D,S]{1}))/',$card,$values);		
+		return $values;
+			
+	}
+		
 	private function orderFaceCards($cards){
 		
-		sort($cards);
+		$sortCards = array();
+		$ace = false;
+		$jack = false;
+		$queen = false;
+		$king = false;
 		
+		foreach($cards as $card){
+						
+			$cardValues = $this->getCardValues($card);
+			if($cardValues[2] == 'A'){ $ace = $card; }			
+			else if($cardValues[2] == 'J'){ $jack = $card; }
+			else if($cardValues[2] == 'Q'){ $queen = $card; }		
+			else if($cardValues[2] == 'K'){ $king = $card; }
+			else { $sortCards[] = $card; }
+			
+		}
 		
-		return $cards;
+		//"Natural" sort... very useful here!
+		natsort($sortCards);
+		
+		if($ace) array_unshift($sortCards,$ace);
+		if($jack) $sortCards[] = $jack;
+		if($queen) $sortCards[] = $queen;		
+		if($king) $sortCards[] = $king;				
+		
+		return $sortCards;
 		
 	}
 	

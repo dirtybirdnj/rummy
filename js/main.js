@@ -1,9 +1,19 @@
 var root = location.protocol + '//' + location.host + '/rummy/challenge-mat-gilbert/';
 
+var stack = Array();
+var discard = Array();
+var p1Hand = Array();
+var p2Hand = Array();
+
 $(function() {
        
     $('#startGame').click(function(){ startGame(); });
     
+    $('.cardContainer .btn').click(function(event){
+	   
+	    
+	    
+    });
     
 });
 
@@ -31,6 +41,12 @@ function startGame(){
 	
 }
 
+function displayHand(player,hand){
+	
+	$.each(hand,function(index,card){ $('#p' + player + 'Cards').append('<div class="cardContainer" data-card="' + card + '"><p class="card">' + card + '</p><input class="btnDiscard btn btn-primary" value="Discard"></div>'); });	
+	
+}
+
 
 function displayNewGame(data){
 	
@@ -40,7 +56,12 @@ function displayNewGame(data){
 	console.log('displaying new game');
 	console.log(data);
 	
-	$.each(data.p1,function(index,card){ $('#p1Cards').append('<div class="cardContainer" data-card="' + card + '"><p class="card">' + card + '</p><input class="btnDiscard btn btn-primary" value="Discard"></div>'); });
-	$.each(data.p2,function(index,card){ $('#p2Cards').append('<div class="cardContainer" data-card="' + card + '"><p class="card">' + card + '</p><input class="btnDiscard btn btn-primary" value="Discard"></div>'); });
+	displayHand(1,data.p1);
+	displayHand(2,data.p2);
+	
+	p1Hand = data.p1;
+	p2Hand = data.p2;	
+	discard = data.discard;
+	stack = data.stack;
 	
 }
