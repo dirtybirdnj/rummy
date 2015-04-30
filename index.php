@@ -32,18 +32,23 @@
       <hr>
 
       <div class="jumbotron">
-        <h1>Start a new Game</h1>
-        <br/>
+	    <div id="startGameControls">
+	        <h1>Start a new Game</h1>
+	        <br/>
+
         <!--<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p> -->
         <a id="startGame" class="btn btn-large btn-success" href="#">Deal Cards</a>
+	    </div>
+
       </div>
 
 
-      <div class="row-fluid marketing">
-        <div class="span6">
+      <div id="cardDisplay" class="row-fluid">
+        <div class="span12">
 		
-			<div><p>P1 Cards: </p><div id="p1_cards"></div></div>
-			<div><p>P2 Cards: </p><div id="p2_cards"></div></div>
+			
+			<div><div id="p1Indicator" class="playerIndicator">Player 1 Turn</div><p>P1 Cards: </p><div id="p1Cards"></div></div>
+			<div><div id="p2Indicator" class="playerIndicator">Player 2 Turn</div><p>P2 Cards: </p><div id="p2Cards"></div></div>
 		
         </div>
       </div>

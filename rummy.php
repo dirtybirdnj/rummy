@@ -33,12 +33,63 @@ class rummy extends deck{
 			
 		}
 		
-		$shuffled_cards['p1'] = $p1_cards;
+		$shuffled_cards['p1'] = $this->sortHand($p1_cards);
 		$shuffled_cards['p2'] = $p2_cards;
 		$shuffled_cards['discard'] = $discard;
 		$shuffled_cards['stack'] = $stack;		
 		
 		return $shuffled_cards;
+		
+	}
+	
+	public function sortHand($cards){
+		
+		$hearts = array();
+		$clubs = array();
+		$diamonds = array();
+		$spades = array();
+		
+		$hand = array();
+		
+		//sort cards by face
+		foreach($cards as $card){
+
+			//$suit = substr($card,1,1);
+			preg_match('/(((?:[1]?)(?:[0-9,J,Q,K,A]))([H,C,D,S]{1}))/',$card,$cardValues);
+			
+			
+			//var_dump($card);
+			//var_dump($suit);
+			//var_dump($cardValues);
+		
+			if($cardValues[3] == 'H') $hearts[] = $card;
+			if($cardValues[3] == 'C') $clubs[] = $card;
+			if($cardValues[3] == 'D') $diamonds[] = $card;			
+			if($cardValues[3] == 'S') $spades[] = $card;
+
+		}
+		
+		//$hand[] = $hearts;
+		//$hand[] = $clubs;
+		//$hand[] = $diamonds;
+		//$hand[] = $spades;
+		
+		$hand = array_merge($hearts,$clubs,$diamonds,$spades);
+		
+		$orderedHand = $this->orderFaceCards($hand);
+		
+		return $orderedHand;						
+		
+		
+		
+	}
+	
+	private function orderFaceCards($cards){
+		
+		sort($cards);
+		
+		
+		return $cards;
 		
 	}
 	

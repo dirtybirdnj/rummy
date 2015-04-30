@@ -34,17 +34,52 @@ margin: 60px 0;
 margin-top: 28px;
 }
 
-#p1_cards {
+
+.btnDiscard {
+	display: inline;
 	
+}
+
+#p1Cards,#p2Cards {
+	
+	width: 100%;
+	height: 100px;
+	padding: 10px;
 	margin-bottom: 20px;
 }
 
+#cardDisplay{
+	
+	display: none;
+	
+}
+
+.cardContainer{
+
+width: 80px;
+float: left;
+margin-right: 5px;
+
+	
+}
+
+.btnDiscard {
+	width: 50px;
+	margin-left: 2px;
+}
+
 .card {
-	display: inline;
+	display: block;
+	margin: 0px auto 5px auto;
 	border: 1px solid black;
 	border-radius: 5px;
-	width: 100px;
-	padding: 10px;
+	width: 50px;
+	height: 44px;
+	padding-top: 24px;
+
+
+
+	text-align: center;
 	
 }
 
@@ -54,3 +89,41 @@ margin-top: 28px;
 	
 }
 
+.black {
+	
+	color: black;
+	
+}
+
+.indicatorFaded {
+	
+	background-color: #ACADAD !important;
+	
+}
+
+.playerIndicator {
+	
+	float: right;
+	width: 60px;
+	height: 40px;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 20px;
+	color: white;
+	padding: 5px;
+	margin-top: 60px;
+	margin-right: 20px;
+	
+}
+
+#p1Indicator {
+	
+	background-color: red;
+	
+}
+
+#p2Indicator {
+	
+	background-color: blue;
+	
+}
