@@ -79,3 +79,12 @@ HTML/CSS/JavaScript or iOS.
 
 Implement the logic for a bot which attempts to win the game. 
 
+
+-------------------
+
+Developer Notes:
+
+5/7/15 - After running out of the 4 hour time limit, I decided to keep working on the project because I understand how to finish it and want to see it through to completion.
+
+Initially, I wanted to do all the game logic server side, and decided not to use the session to persist the game. Upon further consideration, that seems like the best way to handle it short term. Longer term, I'm considering using MongoDB or some other NoSQL solution to store each game. Some sort of persistence will allow people to "come back" to a game or save it for later.
+
