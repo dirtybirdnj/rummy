@@ -55,11 +55,15 @@ class rummy extends deck{
 		foreach($cards as $card){
 
 			$cardValues = $this->getCardValues($card);
+			
+			if(count($cardValues)  > 0){
 
-			if($cardValues[3] == 'H') $hearts[] = $card;
-			if($cardValues[3] == 'C') $clubs[] = $card;
-			if($cardValues[3] == 'D') $diamonds[] = $card;			
-			if($cardValues[3] == 'S') $spades[] = $card;
+				if($cardValues[3] == 'H') $hearts[] = $card;
+				if($cardValues[3] == 'C') $clubs[] = $card;
+				if($cardValues[3] == 'D') $diamonds[] = $card;			
+				if($cardValues[3] == 'S') $spades[] = $card;
+
+			}
 
 		}
 		

@@ -10,9 +10,20 @@ var activePlayer = 'p1';
 
 $(function() {
        
-    $('#startGame').click(function(){ startGame(); });
+    $('#startGame').click(function(){ console.log('startgame'); startGame(); });
+    
+	$('.playerHand').on('click', '.btnDiscard',function(event){
+
+		var player = $(event.target).closest('.playerHand').attr('data-player');
+		var card = $(event.target).parent().attr('data-card');
+		$('#' + activePlayer + 'Cards btnDiscard');
+		console.log('#' + activePlayer + 'Cards .btnDiscard');
+		discardCard(player,card);		
+    
+	});	    
     
 });
+
 
 
 function startGame(){
@@ -27,22 +38,8 @@ function startGame(){
 		displayNewGame(data);
 				
 		$('#p2Indicator').toggleClass('indicatorFaded');
-		$('#p2Cards .btn').attr('disabled','disabled');
+		$('#p2Cards .btn').prop('disabled','disabled');
 		$('#cardDisplay').slideDown();
-		
-		$('.btnDiscard').on("click",function(clickEvent){
-		   
-		   var player = $(clickEvent.target).closest('.playerHand').attr('data-player');
-		   var card = $(clickEvent.target).parent().attr('data-card');
-		   
-		   console.log('init discard');
-
-		   discardCard(player,card);
-		   //$(clickEvent.target).closest('.playerHand').empty();
-		   //displayHand('p1',data);		   
-		   
-		    
-		});		
 		
 	}).fail(function(data){
 		
@@ -62,6 +59,9 @@ function discardCard(player,card){
 	
 		removeDisplayCards(player);		
 		displayHand(player,data);
+		$('#discardPile').html(displayCard(card,false));
+		toggleActivePlayer();		
+
 		
 		
 	}).fail(function(data){
@@ -83,12 +83,6 @@ function displayHand(player,hand){
 	//$('#' + player + 'Cards').empty();
 	$.each(hand,function(index,card){ $('#' + player + 'Cards').append(displayCard(card,true)); });	
 
-}
-
-function updateDiscard(card){
-	
-	
-	
 }
 
 function displayCard(card,discardBtn){
@@ -145,5 +139,27 @@ function displayNewGame(data){
 	p2Hand = data.p2;	
 	discard = data.discard;
 	stack = data.stack;
+	
+}
+
+function toggleActivePlayer(){
+	
+	console.log('active player: ' + activePlayer);
+
+	//Deactivate current player buttons
+	//$('#' + activePlayer + 'Cards').empty();
+	
+	$('#' + activePlayer + 'Cards .btnDiscard').prop('disabled',true);
+	
+	if(activePlayer == 'p1') { activePlayer = 'p2'; }
+	else { activePlayer = 'p1'; };
+
+	//Activate newly active player buttons
+	$('#' + activePlayer + 'Cards .btnDiscard').prop('disabled',false);
+	
+	$('#p1Indicator').toggleClass('indicatorFaded');
+	$('#p2Indicator').toggleClass('indicatorFaded');		
+
+	console.log('active player: ' + activePlayer);
 	
 }
