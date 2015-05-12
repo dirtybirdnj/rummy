@@ -17,7 +17,6 @@ $(function() {
 		var player = $(event.target).closest('.playerHand').attr('data-player');
 		var card = $(event.target).parent().attr('data-card');
 		$('#' + activePlayer + 'Cards btnDiscard');
-		console.log('#' + activePlayer + 'Cards .btnDiscard');
 		discardCard(player,card);		
     
 	});	    
@@ -143,12 +142,8 @@ function displayNewGame(data){
 }
 
 function toggleActivePlayer(){
-	
-	console.log('active player: ' + activePlayer);
 
 	//Deactivate current player buttons
-	//$('#' + activePlayer + 'Cards').empty();
-	
 	$('#' + activePlayer + 'Cards .btnDiscard').prop('disabled',true);
 	
 	if(activePlayer == 'p1') { activePlayer = 'p2'; }
@@ -159,7 +154,5 @@ function toggleActivePlayer(){
 	
 	$('#p1Indicator').toggleClass('indicatorFaded');
 	$('#p2Indicator').toggleClass('indicatorFaded');		
-
-	console.log('active player: ' + activePlayer);
 	
 }

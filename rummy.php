@@ -83,6 +83,10 @@ class rummy extends deck{
 	
 	private function getCardValues($card){
 
+		//0 - Full Card Value
+		//1 - Card Number 
+		//2 - Card Suit
+
 		preg_match('/(((?:[1]?)(?:[0-9,J,Q,K,A]))([H,C,D,S]{1}))/',$card,$values);		
 		return $values;
 			
@@ -113,9 +117,57 @@ class rummy extends deck{
 		if($ace) array_unshift($sortCards,$ace);
 		if($jack) $sortCards[] = $jack;
 		if($queen) $sortCards[] = $queen;		
-		if($king) $sortCards[] = $king;				
+		if($king) $sortCards[] = $king;	
+		
+		
+		//After cards have been ordered, search for victory conditions
+		//$cardSequence = $this->getCardSequence($sortCards);
+		//var_dump($cardSequence);			
 		
 		return $sortCards;
+		
+	}
+	
+	private function detectThreeOfAKind($hand){
+		
+		
+	}
+	
+	private function detectFourCardRun($hand){
+		
+		
+	}
+	
+	//Returns an array of integer values that correspond to the order of a deck
+	private function getCardSequence($hand){
+		
+		$deckOrder = array(
+			'A' => 0,
+			'2' => 1,
+			'3' => 2,
+			'4' => 3,
+			'5' => 4,
+			'6' => 5,
+			'7' => 6,
+			'8' => 7,
+			'9' => 8,
+			'10' => 9,
+			'J' => 10,
+			'Q' => 11,
+			'K' => 12,
+			
+		);
+		
+		$handOrder = array();
+		
+		foreach($hand as $card){ 
+		
+			$cardVals = $this->getCardValues($card);			
+			$handOrder[] = $deckOrder[$cardVals[2]];
+			
+		}
+		
+		return $handOrder;
 		
 	}
 	
