@@ -42,13 +42,15 @@
 
       </div>
 
-
       <div id="cardDisplay" class="row-fluid">
         <div class="span12">
 		
-			<div id="discardPile"></div>
-			<div><div id="p1Indicator" class="playerIndicator">Player 1 Turn</div><p>P1 Cards: </p><div id="p1Cards"></div></div>
-			<div><div id="p2Indicator" class="playerIndicator">Player 2 Turn</div><p>P2 Cards: </p><div id="p2Cards"></div></div>
+			<div class="row-fluid">
+				<p>Discard:</p>
+			<div id="discardPile" class="span12"></div>
+			</div>
+			<div><div id="p1Indicator" class="playerIndicator">Player 1 Turn</div><p>P1 Cards: </p><div id="p1Cards" class="playerHand" data-player="p1"></div></div>
+			<div><div id="p2Indicator" class="playerIndicator">Player 2 Turn</div><p>P2 Cards: </p><div id="p2Cards" class="playerHand" data-player="p2"></div></div>
 		
         </div>
       </div>
