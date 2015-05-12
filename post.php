@@ -30,7 +30,6 @@ if($_POST){
 		$stack = $_SESSION['stack'];
 		
 		//Add the card to the top of the discard pile
-		//$_SESSION['discard'][] = $card;
 		array_unshift($discard,$card);
 				
 		//Remove card from players hand
@@ -46,9 +45,11 @@ if($_POST){
 		$game = new rummy();
 		$sorted_hand = $game->sortHand($hand);
 		
+		//If the stack is empty, add the discard pile back in
 		if(count($stack) == 0){
 			
-			$stack = $discard;
+			//Not sure if shuffling the deck is necessary here... but we can so why not?
+			$stack = $game->shuffleDeck($discard);
 			$discard = array();
 			
 		}
