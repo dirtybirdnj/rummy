@@ -71,8 +71,6 @@ class rummy extends deck{
 		$spades = $this->orderFaceCards($spades);		
 		$hand = array_merge($hearts,$clubs,$diamonds,$spades);
 		
-
-		
 		return $hand;						
 		
 			

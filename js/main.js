@@ -1,39 +1,18 @@
-var root = location.protocol + '//' + location.host + '/rummy/challenge-mat-gilbert/';
+var root = location.protocol + '//' + location.host + '/rummy/';
 
 var stack = Array();
 var discard = Array();
 var p1Hand = Array();
 var p2Hand = Array();
 
+var activePlayer = 'p1';
+
+
 $(function() {
        
     $('#startGame').click(function(){ startGame(); });
     
 });
-
-
-
-//Removes a card from the players hand and places it in discard, makes a POST request to get the next card in the stack
-function discardCard(player,card){
-	
-	//console.log('player ' + player);
-	
-	url = root + 'post.php';
-	
-	$.post(url,{'action' : 'discard','player' : player, 'card': card},function(data){
-	
-		console.log(data);
-		
-		
-	}).fail(function(data){
-		
-		console.log('error');
-		console.log(data);
-		
-	});
-	
-}
-
 
 
 function startGame(){
@@ -56,9 +35,11 @@ function startGame(){
 		   var player = $(clickEvent.target).closest('.playerHand').attr('data-player');
 		   var card = $(clickEvent.target).parent().attr('data-card');
 		   
+		   console.log('init discard');
+
 		   discardCard(player,card);
-		   $(clickEvent.target).closest('.playerHand').empty();
-		   displayHand('p1',data);		   
+		   //$(clickEvent.target).closest('.playerHand').empty();
+		   //displayHand('p1',data);		   
 		   
 		    
 		});		
@@ -73,15 +54,46 @@ function startGame(){
 }
 
 
+//Removes a card from the players hand and places it in discard, makes a POST request to get the next card in the stack
+function discardCard(player,card){
+		
+	url = root + 'post.php';
+	$.post(url,{'action' : 'discard','player' : player, 'card': card},function(data){
+	
+		removeDisplayCards(player);		
+		displayHand(player,data);
+		
+		
+	}).fail(function(data){
+		
+		console.log('error');
+		console.log(data);
+		
+	});
+	
+}
+
+
+
+
+
+
 function displayHand(player,hand){
 	
+	//$('#' + player + 'Cards').empty();
 	$.each(hand,function(index,card){ $('#' + player + 'Cards').append(displayCard(card,true)); });	
 
 }
 
+function updateDiscard(card){
+	
+	
+	
+}
+
 function displayCard(card,discardBtn){
 	
-	console.log(card);
+	//console.log(card);
 	
 	//http://en.wikipedia.org/wiki/Suit_(cards)
 	//♥ U+2665 (&hearts;)	♦ U+2666 (&diams;)	♣ U+2663 (&clubs;)	♠ U+2660 (&spades;)
@@ -113,10 +125,13 @@ function displayCard(card,discardBtn){
 	
 }
 
+function removeDisplayCards(player){
+	
+	$('#' + player + 'Cards').html('');
+	
+}
 
 function displayNewGame(data){
-	
-	console.log(data);
 	
 	$('#p1Cards').empty();
 	$('#p2Cards').empty();	

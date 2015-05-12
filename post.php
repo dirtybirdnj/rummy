@@ -23,18 +23,19 @@ if($_POST){
 	
 	if($_POST['action'] == 'discard'){
 		
-
 		$player = $_POST['player'];
 		$card = $_POST['card'];
 		$hand = $_SESSION[$player];
-		$discard = $_SESSION['discard'];
+		$discard = array_values($_SESSION['discard']);
 		$stack = $_SESSION['stack'];
 		
 		//Add the card to the top of the discard pile
 		//$_SESSION['discard'][] = $card;
 		array_unshift($discard,$card);
-		
+				
 		//Remove card from players hand
+		foreach($hand as $key => $val){ if($val == $card) unset($hand[$key]); }
+		
 		unset($hand[$card]);
 		
 		//Take the top stack card, put in players hand
