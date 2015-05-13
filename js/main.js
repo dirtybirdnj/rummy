@@ -10,7 +10,7 @@ var activePlayer = 'p1';
 
 $(function() {
        
-    $('#startGame').click(function(){ console.log('startgame'); startGame(); });
+    $('#startGame').click(function(){ startGame(); });
     
 	$('.playerHand').on('click', '.btnDiscard',function(event){
 

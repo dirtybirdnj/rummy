@@ -17,8 +17,7 @@ class deck {
 				$card = "$face$suit";
 				$deck[] = $card;
 				
-			}			
-			
+			}						
 		}
 		
 		return $deck;
@@ -33,9 +32,7 @@ class deck {
 		return $deck;
 		
 	}	
-	
-	
-	
+
 }
 	
 ?>

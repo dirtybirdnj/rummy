@@ -75,6 +75,14 @@ class rummy extends deck{
 		$spades = $this->orderFaceCards($spades);		
 		$hand = array_merge($hearts,$clubs,$diamonds,$spades);
 		
+		$threeTest = $this->detectThreeOfAKind($hand);
+		
+		//echo "Three Test: \n";
+		//var_dump($threeTest);
+		
+		$fourRunTest = $this->detectFourCardRun($hand);
+		//var_dump($fourRunTest);
+		
 		return $hand;						
 		
 			
@@ -83,9 +91,9 @@ class rummy extends deck{
 	
 	private function getCardValues($card){
 
-		//0 - Full Card Value
-		//1 - Card Number 
-		//2 - Card Suit
+		//1 - Full Card Value
+		//2 - Card Number 
+		//3 - Card Suit
 
 		preg_match('/(((?:[1]?)(?:[0-9,J,Q,K,A]))([H,C,D,S]{1}))/',$card,$values);		
 		return $values;
@@ -130,11 +138,82 @@ class rummy extends deck{
 	
 	private function detectThreeOfAKind($hand){
 		
+		$matches = array();
+		
+		$possibleCards['A'] = array();
+		$possibleCards['2'] = array();		
+		$possibleCards['3'] = array();				
+		$possibleCards['4'] = array();		
+		$possibleCards['5'] = array();				
+		$possibleCards['6'] = array();		
+		$possibleCards['7'] = array();		
+		$possibleCards['8'] = array();		
+		$possibleCards['9'] = array();		
+		$possibleCards['10'] = array();		
+		$possibleCards['J'] = array();										
+		$possibleCards['Q'] = array();		
+		$possibleCards['K'] = array();
+		
+		foreach($hand as $card){
+			
+			$cardVals = $this->getCardValues($card);
+			$possibleCards[$cardVals[2]][] = $cardVals[0];
+			
+		}
+		
+		foreach($possibleCards as $suit => $cards){ if(count($cards) >= 3){ $matches[$suit] = $cards; } }				
+
+		return $matches;
 		
 	}
 	
 	private function detectFourCardRun($hand){
+	
+		$sequence = false;
+		$faceSortedCards = $this->sortCardsByFace($hand);
 		
+		foreach($faceSortedCards as $suit){
+
+			//Condition is only satisfied when there are at least 4 cards in the run			
+			if(count($suit) > 3){
+			
+				$suitSequence = $this->getCardSequence($suit);
+				
+				$first = true;
+				$sequence = array();
+				
+				foreach($suit as $i => $card){
+					
+					if(!$first){ if($suitSequence[$i] == $suitSequence[$i-1] + 1) $sequence[] = $card; } 
+					else { $first = false; }
+					
+				}
+
+				if(count($sequence) < 3) $sequence = false;
+
+			}
+			
+		}
+	
+		
+
+		
+		return $sequence;
+		
+	}
+	
+	private function sortCardsByFace($hand){
+		
+		$sortedCards = array();
+		
+		foreach($hand as $card){
+		
+			$cardVals = $this->getCardValues($card);			
+			$sortedCards[$cardVals[3]][] = $cardVals[1];
+			
+		}
+		
+		return $sortedCards;
 		
 	}
 	

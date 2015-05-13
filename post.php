@@ -68,9 +68,20 @@ if($_POST){
 	echo "<pre>";	
 	$game = new rummy();
 	
-	$deck = $game->dealCards();
+	//$deck = $game->dealCards();
+	//var_dump($deck);	
 	
-	var_dump($deck);	
+	//Testing out 3 of a kind detecting
+	//$hand = array('AD','AC','AH','2C','3D','JC','2D');
+	
+	//Testing out 4 card run detection
+	//$hand = array('AD','2D','3D','4D','JC','QC','KD');
+	//$hand = array('AD','2D','3D','4D','5D','QC','KD');	
+	$hand = array('AD','2D','3D','4D','5D','6D','KD');	
+
+	
+	var_dump($game->sortHand($hand));
+	
 	echo "</pre>";	
 	
 }
