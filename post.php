@@ -17,8 +17,7 @@ if($_POST){
 		$_SESSION['p2'] = $deck['p2'];				
 
 		outputJSON($deck);
-		
-		
+			
 	}
 	
 	if($_POST['action'] == 'discard'){
@@ -59,7 +58,11 @@ if($_POST){
 		$_SESSION[$player] = $hand;
 		
 		
-		outputJSON($sorted_hand);
+		$output['hand'] = $sorted_hand;
+		$output['threeOfAKind'] = $game->detectThreeOfAKind($sorted_hand);
+		$output['fourCardRun'] = $game->detectFourCardRun($sorted_hand);
+		
+		outputJSON($output);
 		
 	}
 

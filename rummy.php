@@ -136,7 +136,7 @@ class rummy extends deck{
 		
 	}
 	
-	private function detectThreeOfAKind($hand){
+	public function detectThreeOfAKind($hand){
 		
 		$matches = array();
 		
@@ -163,11 +163,12 @@ class rummy extends deck{
 		
 		foreach($possibleCards as $suit => $cards){ if(count($cards) >= 3){ $matches[$suit] = $cards; } }				
 
-		return $matches;
+		if(empty($matches)) return false;
+		else return $matches;
 		
 	}
 	
-	private function detectFourCardRun($hand){
+	public function detectFourCardRun($hand){
 	
 		$sequence = false;
 		$faceSortedCards = $this->sortCardsByFace($hand);

@@ -49,6 +49,30 @@ function startGame(){
 	
 }
 
+function displayNewGame(data){
+	
+	$('#p1Cards').empty();
+	$('#p2Cards').empty();	
+	
+	displayHand('p1',data.p1);
+	displayHand('p2',data.p2);
+	
+	$('#discardPile').html(displayCard(data.discard[0],false));
+	
+	p1Hand = data.p1;
+	p2Hand = data.p2;	
+	discard = data.discard;
+	stack = data.stack;
+	
+}
+
+function displayHand(player,hand){
+	
+	//$('#' + player + 'Cards').empty();
+	$.each(hand,function(index,card){ $('#' + player + 'Cards').append(displayCard(card,true)); });	
+
+}
+
 
 //Removes a card from the players hand and places it in discard, makes a POST request to get the next card in the stack
 function discardCard(player,card){
@@ -57,7 +81,7 @@ function discardCard(player,card){
 	$.post(url,{'action' : 'discard','player' : player, 'card': card},function(data){
 	
 		removeDisplayCards(player);		
-		displayHand(player,data);
+		displayHand(player,data.hand);
 		$('#discardPile').html(displayCard(card,false));
 		toggleActivePlayer();		
 
@@ -70,18 +94,6 @@ function discardCard(player,card){
 		
 	});
 	
-}
-
-
-
-
-
-
-function displayHand(player,hand){
-	
-	//$('#' + player + 'Cards').empty();
-	$.each(hand,function(index,card){ $('#' + player + 'Cards').append(displayCard(card,true)); });	
-
 }
 
 function displayCard(card,discardBtn){
@@ -124,22 +136,7 @@ function removeDisplayCards(player){
 	
 }
 
-function displayNewGame(data){
-	
-	$('#p1Cards').empty();
-	$('#p2Cards').empty();	
-	
-	displayHand('p1',data.p1);
-	displayHand('p2',data.p2);
-	
-	$('#discardPile').html(displayCard(data.discard[0],false));
-	
-	p1Hand = data.p1;
-	p2Hand = data.p2;	
-	discard = data.discard;
-	stack = data.stack;
-	
-}
+
 
 function toggleActivePlayer(){
 
