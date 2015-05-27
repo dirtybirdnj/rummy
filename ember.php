@@ -43,97 +43,50 @@
       </div>
       
     </div>
-<div class="container-fluid">
+    
+	<div class="container-fluid">
  
-<div class="row row-centered">
-	<div class="col-xs-6">
-	Discard
+	<div class="row row-centered">
+		<div class="col-xs-6">
+			<p class="text-right">Discard</p>
 
-	</div>
-	<div class="col-xs-6">
-	Stack	
+		</div>
+		<div class="col-xs-6">
+			<p class="text-left">Stack</p>
+		</div>	
 		
-	</div>	
-	
-</div>	 
-
-    <div class="row row-centered">
-
-        <div class="col-xs-5 col-centered cardLeftSide">
-		        
-		        <div class="card">AS
-			        <button class=" btn btnDiscard">Discard</button>
-		        </div>
-		        <div class="card">KS
-			        <button class=" btn btnDiscard">Discard</button>
-		        </div>
-		        <div class="card">JS
-			        <button class=" btn btnDiscard">Discard</button>    
-		        </div>
-
-        </div>
-        <div class="col-xs-7 col-centered cardRightSide">
-
-		        <div class="card">10S
-			        <button class=" btn btnDiscard">Discard</button>			        
-		        </div>
-		        <div class="card">9S
-			        <button class=" btn btnDiscard">Discard</button>			        
-		        </div>
-		        <div class="card">8S
-			        <button class=" btn btnDiscard">Discard</button>			        
-		        </div>
-		        <div class="card">7S
-			        <button class=" btn btnDiscard">Discard</button>			        
-		        </div>		        
-		        		    	
-
-	    </div>   
-
-    </div>    
+	</div>	 
    
-    <div class="row row-centered">
+	</div>
+	
+	<div class="container cardRow">
+    <div class="row-centered">
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>        
+    </div>
+	</div>
 
-        <div class="col-xs-5 col-centered cardLeftSide">
-		        
-		        <div class="card">AS
-			        <button class=" btn btnDiscard">Discard</button>
-		        </div>
-		        <div class="card">KS
-			        <button class=" btn btnDiscard">Discard</button>
-		        </div>
-		        <div class="card">JS
-			        <button class=" btn btnDiscard">Discard</button>    
-		        </div>
-
-        </div>
-        <div class="col-xs-7 col-centered cardRightSide">
-
-		        <div class="card">10S
-			        <button class=" btn btnDiscard">Discard</button>			        
-		        </div>
-		        <div class="card">9S
-			        <button class=" btn btnDiscard">Discard</button>			        
-		        </div>
-		        <div class="card">8S
-			        <button class=" btn btnDiscard">Discard</button>			        
-		        </div>
-		        <div class="card">7S
-			        <button class=" btn btnDiscard">Discard</button>			        
-		        </div>		        
-		        		    	
-
-	    </div>   
-
-    </div>    
-</div>
+	<div class="container cardRow">
+    <div class="row-centered">
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>
+        <div class=" col-centered"><div class="content"><p>Card</p><button class=" btn btnDiscard">Discard</button></div></div>                                       
+    </div>
+	</div>
 
 
       <footer class="footer">
         <p>&copy; Mat Gilbert 2015</p>
       </footer>
-
-    </div> <!-- /container -->
 
 
 	<!-- Latest compiled and minified JavaScript -->

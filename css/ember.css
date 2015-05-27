@@ -113,3 +113,26 @@ body {
     display:table-cell;
     vertical-align:middle;
 }
+
+
+/*       */
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
+
+.content {
+  border: 1px solid red;
+  text-align: center;
+  padding: 30px 5px 5px 5px;
+  margin: 0px;
+}
